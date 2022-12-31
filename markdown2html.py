@@ -6,25 +6,16 @@ First argument is the name of the Markdown file
 Second argument is the output file name
 '''
 
-from sys import argv, stderr
-from os import path
+if __name__ == "__main__":
+    from sys import argv
+    from sys import stderr
+    from os import path
 
-
-def markdown2html():
-    """main program"""
-    import markdown
-    if len(argv) < 3:
-        print("Usage: ./markdown2html.py README.md README.html\n", file=stderr)
+    if len(argv) < 2:
+        stderr.write("Usage: ./markdown2html.py README.md README.html\n")
         exit(1)
     if not path.exists(argv[1]):
-        print("Missing {}\n".format(argv[1]), file=stderr)
+        stderr.write("Missing {}\n".format(argv[1]))
         exit(1)
-    with open(argv[1], "r") as f:
-        markdownvar = markdown.markdown(f.read())
-    with open(argv[2], "w") as f:
-        f.write(markdownvar + "\n")
+    print(end="")
     exit(0)
-
-
-if __name__ == "__main__":
-    markdown2html()
